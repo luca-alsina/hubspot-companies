@@ -22,7 +22,7 @@ class HubspotService implements HubspotServiceInterface
     {
         // Récupération des entreprises
         return $this->hubspot->crm()->companies()->getAll(
-            properties: ['name', 'description', 'website', 'industry', 'city', 'zip', 'country', 'numberofemployees', 'annualrevenue', 'description', 'phone'],
+            properties: ['name', 'description', 'website', 'industry', 'city', 'zip', 'country', 'numberofemployees', 'annualrevenue', 'description', 'phone', 'domain'],
             archived: false,
         );
     }

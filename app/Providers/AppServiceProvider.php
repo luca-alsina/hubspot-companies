@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         // Hubspot API Service
-        $this->app->bind(HubspotService::class, function () {
+        $this->app->bind(HubspotService::class, static function () {
             return new HubspotService(\HubSpot\Factory::createWithAccessToken(config('services.hubspot.key')));
         });
         $this->app->bind(HubspotServiceInterface::class, HubspotService::class);
