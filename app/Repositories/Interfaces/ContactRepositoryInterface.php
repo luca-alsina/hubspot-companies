@@ -11,4 +11,8 @@ interface ContactRepositoryInterface
 
     public function findById($id) : ?Contact;
 
+    public function create(array $data) : Contact;
+
+    public function truncate() : void;
+
 }

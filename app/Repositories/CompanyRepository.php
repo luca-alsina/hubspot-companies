@@ -38,4 +38,20 @@ class CompanyRepository implements CompanyRepositoryInterface
             return Company::find($id);
     }
 
+    /**
+     * @param array $data
+     * @return Company
+     */
+    public function create(array $data): Company
+    {
+        return Company::create($data);
+    }
+
+    /**
+     * @return void
+     */
+    public function truncate(): void
+    {
+        Company::truncate();
+    }
 }

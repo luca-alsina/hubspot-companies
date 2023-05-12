@@ -24,4 +24,20 @@ class ContactRepository implements Interfaces\ContactRepositoryInterface
             return Contact::find($id);
     }
 
+    /**
+     * @param array $data
+     * @return Contact
+     */
+    public function create(array $data): Contact
+    {
+        return Contact::create($data);
+    }
+
+    /**
+     * @return void
+     */
+    public function truncate(): void
+    {
+        Contact::truncate();
+    }
 }

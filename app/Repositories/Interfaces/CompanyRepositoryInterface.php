@@ -13,4 +13,8 @@ interface CompanyRepositoryInterface
 
     public function findById($id) : ?Company;
 
+    public function create(array $data) : Company;
+
+    public function truncate() : void;
+
 }
