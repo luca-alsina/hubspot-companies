@@ -2,7 +2,8 @@
 
 namespace App\Providers;
 
-use App\Services\HubspotService;
+use App\Contracts\HubspotServiceInterface;
+use App\Services\Hubspot\HubspotService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,9 +14,10 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         // Hubspot API Service
-        $this->app->bind(HubspotService::class, static function () {
-            return new HubspotService(config('services.hubspot.key'));
+        $this->app->bind(HubspotService::class, function () {
+            return new HubspotService(\HubSpot\Factory::createWithAccessToken(config('services.hubspot.key')));
         });
+        $this->app->bind(HubspotServiceInterface::class, HubspotService::class);
     }
 
     /**

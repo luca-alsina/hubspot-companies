@@ -1,27 +1,19 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Hubspot;
 
-use App\Models\Company;
+use App\Contracts\HubspotServiceInterface;
 use HubSpot\Client\Crm\Contacts\ApiException;
 use HubSpot\Discovery\Discovery;
 
-class HubspotService
+class HubspotService implements HubspotServiceInterface
 {
 
     /**
-     * @var Discovery $hubspot Hubspot API
+     * @param Discovery $hubspot Hubspot API Discovery Object
      */
-    private readonly Discovery $hubspot;
-
-    /**
-     * @param string $apiKey Hubspot API Key
-     */
-    public function __construct(private readonly string $apiKey)
-    {
-        // Initialisation de l'API Hubspot avec la clé API
-         $this->hubspot = \HubSpot\Factory::createWithAccessToken($this->apiKey);
-    }
+    public function __construct(private readonly Discovery $hubspot)
+    {}
 
     /**
      * @return array Companies from Hubspot
