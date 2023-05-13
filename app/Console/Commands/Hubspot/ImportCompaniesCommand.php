@@ -31,8 +31,14 @@ class ImportCompaniesCommand extends Command
         // Pour chaque entreprise
         foreach ($companies as $company) {
             $this->info('Importation de l\'entreprise ' . $company['properties']['name']);
-            // Création de l'entreprise
 
+            // Vérification de la présence des données obligatoires
+            if (!isset($company['properties']['name'])) {
+                $this->error('Erreur lors de l\'importation de l\'entreprise : le nom est obligatoire');
+                continue;
+            }
+
+            // Création de l'entreprise
             try {
                 $companyRepository->create([
                     'id'                    => $company['id'],
@@ -61,6 +67,7 @@ class ImportCompaniesCommand extends Command
 
         $this->info('Importation des entreprises depuis Hubspot terminée');
 
+        // TODO Ajouter un paramètre à la commande pour activer/désactiver l'importation des contacts
         // Proposition d'importation des contacts
         if ($this->confirm('Voulez-vous importer les contacts ?', true)) {
             $this->call('hubspot-import:contacts');
