@@ -9,7 +9,7 @@ use Illuminate\Console\Command;
 
 class ImportCompaniesCommand extends Command
 {
-    protected $signature = 'hubspot-import:companies';
+    protected $signature = 'hubspot-import:companies {--contacts : Importer les contacts des companies}';
 
     protected $description = 'Importation des entreprises depuis Hubspot';
 
@@ -67,9 +67,12 @@ class ImportCompaniesCommand extends Command
 
         $this->info('Importation des entreprises depuis Hubspot terminée');
 
-        // TODO Ajouter un paramètre à la commande pour activer/désactiver l'importation des contacts
+        // Importation des contacts si l'option --contacts est présente
+        if ($this->option('contacts')) {
+            $this->call('hubspot-import:contacts');
+        }
         // Proposition d'importation des contacts
-        if ($this->confirm('Voulez-vous importer les contacts ?', true)) {
+        elseif ($this->confirm('Voulez-vous importer les contacts ?', true)) {
             $this->call('hubspot-import:contacts');
         }
 
