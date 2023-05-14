@@ -53,4 +53,16 @@ class HubspotService implements HubspotServiceInterface
         return $this->hubspot->crm()->contacts()->searchApi()->doSearch($searchRequest)['results'];
     }
 
+    /**
+     * @return array Contacts from Hubspot
+     */
+    public function getContacts(): array
+    {
+        // Récupération des contacts
+        return $this->hubspot->crm()->contacts()->getAll(
+            properties: ['associatedcompanyid', 'email', 'firstname', 'lastname', 'phone', 'jobtitle'],
+            archived: false,
+        );
+    }
+
 }

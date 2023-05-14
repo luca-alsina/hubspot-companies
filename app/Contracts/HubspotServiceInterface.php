@@ -12,4 +12,6 @@ interface HubspotServiceInterface
 
     public function getContactsByCompanyId(int $id): array;
 
+    public function getContacts(): array;
+
 }
