@@ -9,7 +9,7 @@ use Illuminate\Console\Command;
 
 class ImportCompaniesCommand extends Command
 {
-    protected $signature = 'hubspot-import:companies';
+    protected $signature = 'hubspot-import:companies {--contacts : Importe les contacts}';
 
     protected $description = 'Importation des entreprises depuis Hubspot';
 
@@ -31,8 +31,14 @@ class ImportCompaniesCommand extends Command
         // Pour chaque entreprise
         foreach ($companies as $company) {
             $this->info('Importation de l\'entreprise ' . $company['properties']['name']);
-            // Création de l'entreprise
 
+            // Vérification de la présence des données obligatoires
+            if (!isset($company['properties']['name'])) {
+                $this->error('Erreur lors de l\'importation de l\'entreprise : le nom est obligatoire');
+                continue;
+            }
+
+            // Création de l'entreprise
             try {
                 $companyRepository->create([
                     'id'                    => $company['id'],
@@ -61,10 +67,13 @@ class ImportCompaniesCommand extends Command
 
         $this->info('Importation des entreprises depuis Hubspot terminée');
 
-        // Proposition d'importation des contacts
-        if ($this->confirm('Voulez-vous importer les contacts ?', true)) {
+        // Importation des contacts si l'option --contacts est présente
+        if ($this->option('contacts')) {
             $this->call('hubspot-import:contacts');
         }
-
+        // Proposition d'importation des contacts
+        elseif ($this->confirm('Voulez-vous importer les contacts ?', true)) {
+            $this->call('hubspot-import:contacts');
+        }
     }
 }
