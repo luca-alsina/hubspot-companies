@@ -8,14 +8,17 @@ class Contact extends Model
 {
     protected $fillable = [
         'id',
-        'firstname',
-        'lastname',
+        'company_id',
+        'first_name',
+        'last_name',
         'email',
         'phone',
         'city',
         'country',
         'zip',
-        'company_id',
+        'job_title',
+        'created_at',
+        'updated_at',
     ];
 
     public function company(): \Illuminate\Database\Eloquent\Relations\BelongsTo
