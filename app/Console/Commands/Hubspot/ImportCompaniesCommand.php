@@ -37,6 +37,12 @@ class ImportCompaniesCommand extends Command
                 $this->error('Erreur lors de l\'importation de l\'entreprise : le nom est obligatoire');
                 continue;
             }
+            // Vérification que la date de création de l'entreprise est bin supérieure au 09 juin 2021
+            if (($company['created_at'])->getTimestamp() < strtotime('2021-06-09')) {
+                $this->error('Erreur lors de l\'importation de l\'entreprise ' . $company['properties']['name'] . ' : la date de création est inférieure au 09 juin 2021');
+                continue;
+            }
+            $this->info('Date de création de l\'entreprise ' . $company['properties']['name'] . ' : ' . ($company['created_at'])->format('d/m/Y'));
 
             // Création de l'entreprise
             try {
