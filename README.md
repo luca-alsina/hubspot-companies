@@ -36,8 +36,12 @@ Ce projet est un test technique pour l'entreprise Kaffein. Il s'agit d'une appli
 5. Générer une clé d'application avec la commande `php artisan key:generate`
 6. Lancer la compilation des assets avec la commande `npm run dev` (ou `npm run watch` pour la compilation automatique après chaque modification)
 7. Lancer le serveur avec la commande `php artisan serve`
-8. Se rendre sur l'adresse [http://localhost:8000](http://localhost:8000) pour accéder à l'application
-9. Lancer l'import des données avec la commande `php artisan hubspot-import:companies` (ou `php artisan hubspot-import:all` pour tout importer)
+8. Lancer l'import des données avec la commande `php artisan hubspot-import:companies` (ou `php artisan hubspot-import:all` pour tout importer)
+9. Lancer le seed de la base de données avec la commande `php artisan db:seed`
+10. Se rendre sur l'adresse [http://localhost:8000](http://localhost:8000) pour accéder à l'application
+11. Se connecter avec les identifiants suivants :
+    - Email : `test@kaffein.dev`
+    - Mot de passe : `test`
 
 ## Fonctionnalités
 
