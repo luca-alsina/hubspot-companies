@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Company;
 use App\Repositories\Interfaces\CompanyRepositoryInterface;
-use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Collection;
 
 class CompanyRepository implements CompanyRepositoryInterface
 {
@@ -12,7 +12,7 @@ class CompanyRepository implements CompanyRepositoryInterface
     /**
      * @return array Company
      */
-    public function getAll(): array
+    public function getAll(): Collection
     {
 
         return Company::all();

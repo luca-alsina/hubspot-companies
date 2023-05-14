@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Contact;
+use Illuminate\Database\Eloquent\Collection;
 
 class ContactRepository implements Interfaces\ContactRepositoryInterface
 {
@@ -10,7 +11,7 @@ class ContactRepository implements Interfaces\ContactRepositoryInterface
     /**
      * @return array Contacts
      */
-    public function getAll(): array
+    public function getAll(): Collection
     {
         return Contact::all();
     }
