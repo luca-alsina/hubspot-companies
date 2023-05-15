@@ -1,112 +1,6 @@
-<script setup>
-import AppLayout from '@/Layouts/AppLayout.vue';
-import ShowCompanyModal from "@/Pages/Companies/Partials/ShowCompanyModal.vue";
-// import Table from "@/Components/Table.vue";
-
-import { TVTable, TVPagination } from '@bitthecat/tailwind-vue-data-table'
-import "@bitthecat/tailwind-vue-data-table/dist/library.css";
-
-const fields = [
-    {
-        key: 'id',
-        label: 'ID',
-        sortable: true,
-    },
-    {
-        key: 'name',
-        label: 'Name',
-        sortable: true,
-    },
-    {
-        key: 'email',
-        label: 'Email',
-        sortable: true,
-    },
-    {
-        key: 'website',
-        label: 'Website',
-        sortable: false,
-    },
-    {
-        key: 'phone',
-        label: 'Phone',
-        sortable: false,
-    },
-    {
-        key: 'created_at',
-        label: 'Created At',
-        sortable: true,
-    },
-    {
-        key: 'updated_at',
-        label: 'Updated At',
-        sortable: true,
-    },
-];
-
-const data = [
-    {
-        id: 1,
-        name: 'Leanne Graham',
-        email: 'contact@company.com',
-        website: 'company.com',
-        phone: '1-770-736-8031 x56442',
-        created_at: '2021-08-01 12:00:00',
-        updated_at: '2021-08-01 12:00:00',
-    },
-    {
-        id: 2,
-        name: 'Ervin Howell',
-        email: 'contact@company.com',
-        website: 'company.com',
-        phone: '010-692-6593 x09125',
-        created_at: '2021-08-01 12:00:00',
-        updated_at: '2021-08-01 12:00:00',
-    },
-    {
-        id: 3,
-        name: 'Clementine Bauch',
-        email: 'contact@company.com',
-        website: 'company.com',
-        phone: '1-463-123-4447',
-        created_at: '2021-08-01 12:00:00',
-        updated_at: '2021-08-01 12:00:00',
-    },
-    {
-        id: 4,
-        name: 'Patricia Lebsack',
-        email: 'contact@company.com',
-        website: 'company.com',
-        phone: '493-170-9623 x156',
-        created_at: '2021-08-01 12:00:00',
-        updated_at: '2021-08-01 12:00:00',
-    },
-];
-
-</script>
-
-<script>
-export default {
-    data() {
-        return {
-            selectedCompany: null,
-            showCompanyModal: false,
-        }
-    },
-    methods: {
-        rowClicked(row) {
-            console.log(row);
-
-            this.selectedCompany = row;
-            this.showCompanyModal = true;
-        },
-    },
-}
-</script>
-
 <template>
 
-    <ShowCompanyModal :show="showCompanyModal" :company="selectedCompany" />
+    <ShowCompanyModal :show="showCompanyModal" :company="selectedCompany" @close="closeCompanyModal" />
 
     <AppLayout title="Companies">
         <template #header>
@@ -117,12 +11,86 @@ export default {
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <TVTable :fields="fields" :items="data" @row-clicked="rowClicked" />
+                <TVTable :fields="fields" :items="companies" @row-clicked="rowClicked" />
             </div>
         </div>
 
     </AppLayout>
 </template>
+
+<script setup>
+import AppLayout from "@/Layouts/AppLayout.vue";
+import ShowCompanyModal from "@/Pages/Companies/Partials/ShowCompanyModal.vue";
+import { defineProps, defineEmits, ref } from "vue";
+import { TVTable } from "@bitthecat/tailwind-vue-data-table";
+import "@bitthecat/tailwind-vue-data-table/dist/library.css";
+
+const props = defineProps({
+    companies: {
+        type: Array,
+        required: true,
+    },
+});
+
+const companies = props.companies.data.map(company => {
+    return {
+        id:         company.id,
+        name:       company.name,
+        email:      company.email,
+        website:    company.website,
+        phone:      company.phone,
+        city:       company.city,
+    }
+});
+
+const emit = defineEmits(["close"]);
+
+const fields = [
+    {
+        key: "id",
+        label: "ID",
+        sortable: true,
+    },
+    {
+        key: "name",
+        label: "Name",
+        sortable: true,
+    },
+    {
+        key: "email",
+        label: "Email",
+        sortable: true,
+    },
+    {
+        key: "website",
+        label: "Website",
+        sortable: false,
+    },
+    {
+        key: "phone",
+        label: "Phone",
+        sortable: false,
+    },
+    {
+        key: "city",
+        label: "City",
+        sortable: true,
+    },
+];
+
+const selectedCompany = ref(null);
+const showCompanyModal = ref(false);
+
+const rowClicked = (row) => {
+    selectedCompany.value = row;
+    showCompanyModal.value = true;
+};
+
+const closeCompanyModal = () => {
+    showCompanyModal.value = false;
+};
+
+</script>
 
 <style scoped>
 
