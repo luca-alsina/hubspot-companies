@@ -14,6 +14,8 @@ interface CompanyRepositoryInterface
 
     public function findById(int $id) : ?Company;
 
+    public function searchBy(string $field, string $value) : Collection;
+
     public function create(array $data) : Company;
 
     public function getIndustries() : array;

@@ -52,7 +52,12 @@ class CompanyRepository implements CompanyRepositoryInterface
      */
     public function getIndustries(): array
     {
-        return Company::select('industry')->distinct()->get()->pluck('industry')->toArray();
+        return Company::select('industry')->distinct()->get()->map(static function ($item) {
+            return [
+                'label' => $item->industry,
+                'value' => urlencode($item->industry),
+            ];
+        })->toArray();
     }
 
     /**
@@ -61,5 +66,15 @@ class CompanyRepository implements CompanyRepositoryInterface
     public function truncate(): void
     {
         Company::truncate();
+    }
+
+    /**
+     * @param string $field
+     * @param string $value
+     * @return Collection
+     */
+    public function searchBy(string $field, string $value): Collection
+    {
+        return Company::where($field, $value)->get();
     }
 }
