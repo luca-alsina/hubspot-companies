@@ -12,7 +12,7 @@ interface CompanyRepositoryInterface
 
     public function getAllWithContacts() : array;
 
-    public function findById($id) : ?Company;
+    public function findById(int $id) : ?Company;
 
     public function create(array $data) : Company;
 

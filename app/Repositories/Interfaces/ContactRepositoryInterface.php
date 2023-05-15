@@ -10,7 +10,7 @@ interface ContactRepositoryInterface
 
     public function getAll() : Collection;
 
-    public function findById($id) : ?Contact;
+    public function findById(int $id) : ?Contact;
 
     public function create(array $data) : Contact;
 

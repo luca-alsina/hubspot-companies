@@ -9,20 +9,22 @@ class ContactRepository implements Interfaces\ContactRepositoryInterface
 {
 
     /**
+     * @param array|null $fields
      * @return array Contacts
      */
-    public function getAll(): Collection
+    public function getAll(array|null $fields): Collection
     {
-        return Contact::all();
+        return Contact::all()->get($fields);
     }
 
     /**
-     * @param $id int Contact ID
+     * @param int $id
+     * @param array|null $fields
      * @return Contact|null Contact
      */
-    public function findById($id): ?Contact
+    public function findById(int $id, array|null $fields): ?Contact
     {
-            return Contact::find($id);
+            return Contact::find($id)->get($fields);
     }
 
     /**
