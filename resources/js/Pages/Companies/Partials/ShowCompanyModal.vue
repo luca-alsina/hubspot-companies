@@ -43,19 +43,10 @@ watch(() => props.company, () => {
     })
 });
 
-</script>
+function close() {
+    this.$emit('close');
+}
 
-<script>
-    export default {
-
-        emits: ['close'],
-        methods: {
-            close() {
-                this.$emit('close');
-            }
-        },
-
-    };
 </script>
 
 <template>
