@@ -22,8 +22,8 @@ class CompanyController extends Controller
         return Inertia::render('Companies/List', compact('companies'));
     }
 
-    public function show(Company $company)
+    public function show(int $company)
     {
-        return new CompanyResource($company);
+        return new CompanyResource($this->companyRepository->findById($company));
     }
 }

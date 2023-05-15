@@ -35,7 +35,7 @@ class CompanyRepository implements CompanyRepositoryInterface
      */
     public function findById($id): ?Company
     {
-            return Company::find($id);
+            return Company::with('contacts')->find($id);
     }
 
     /**
