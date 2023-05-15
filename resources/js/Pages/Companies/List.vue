@@ -16,7 +16,7 @@
                 <Select
                     :title="selectTitle"
                     :actionMessage="selectActionMessage"
-                    :data="selectData"
+                    :data="props.industries"
                     @update:data="showOnlyIndustry"
                 />
 
@@ -44,6 +44,20 @@ const props = defineProps({
     companies: {
         type: Array,
         required: true,
+    },
+    industries: {
+        type: Array,
+        required: true,
+        schema: {
+            value: {
+                type: String,
+                required: true,
+            },
+            name: {
+                type: String,
+                required: true,
+            },
+        },
     },
 });
 
