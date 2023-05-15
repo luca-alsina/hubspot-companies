@@ -38,7 +38,6 @@ watch(() => props.company, () => {
 
     getCompany(props.company.id).then(response => {
         company.value = response.data.data;
-        console.log(response.data);
         isLoading.value = false;
     })
 });
