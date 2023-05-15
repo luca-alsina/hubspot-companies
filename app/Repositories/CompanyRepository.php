@@ -52,7 +52,7 @@ class CompanyRepository implements CompanyRepositoryInterface
      */
     public function getIndustries(): array
     {
-        return Company::select('industry')->distinct()->get()->map(static function ($item) {
+        return Company::select('industry')->distinct()->whereNotNull('industry')->get()->map(static function ($item) {
             return [
                 'label' => $item->industry,
                 'value' => urlencode($item->industry),
