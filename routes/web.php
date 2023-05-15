@@ -26,6 +26,7 @@ Route::middleware([
 
     Route::group([ 'prefix' => 'companies', 'as' => 'companies.'], static function () {
         Route::get('/', [ \App\Http\Controllers\CompanyController::class, 'index' ])->name('index');
+        Route::get('/{company}', [ \App\Http\Controllers\CompanyController::class, 'show' ])->name('show');
     });
 
 });
