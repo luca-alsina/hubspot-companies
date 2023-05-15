@@ -16,7 +16,7 @@ use Inertia\Inertia;
 |
 */
 
-//Route::redirect( '/', '/companies' );
+Route::redirect( '/', '/companies' );
 
 Route::middleware([
     'auth:sanctum',
