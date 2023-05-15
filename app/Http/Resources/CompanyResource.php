@@ -23,7 +23,7 @@ class CompanyResource extends JsonResource
             'email'             => $this->email,
             'number_employees'  => $this->number_employees,
             'annual_revenue'    => $this->annual_revenue,
-            'contacts'          => $this->when($this->relationLoaded('contacts'), ContactResource::collection($this->contacts)),
+            'contacts'          => $this->whenLoaded('contacts', fn() => ContactResource::collection($this->contacts)),
             'description'       => $this->description,
             'created_at'        => $this->created_at,
         ];
