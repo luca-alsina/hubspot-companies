@@ -43,8 +43,6 @@ const companies = props.companies.data.map(company => {
     }
 });
 
-const emit = defineEmits(["close"]);
-
 const fields = [
     {
         key: "id",
