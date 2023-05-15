@@ -42,7 +42,7 @@ watch(() => props.company, () => {
     })
 });
 
-function close() {
+const close = () => {
     this.$emit('close');
 }
 
