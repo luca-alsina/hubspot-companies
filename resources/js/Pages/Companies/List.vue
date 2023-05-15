@@ -62,16 +62,7 @@ const props = defineProps({
 });
 
 /* Chargement des données dans le tableau */
-const companies = props.companies.data.map(company => {
-    return {
-        id:         company.id,
-        name:       company.name,
-        email:      company.email,
-        website:    company.website,
-        phone:      company.phone,
-        city:       company.city,
-    }
-});
+const companies = props.companies.data;
 
 const fields = [
     {
