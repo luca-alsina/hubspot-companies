@@ -25,7 +25,7 @@
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <TVTable :fields="fields" :items="companies" @row-clicked="rowClicked" />
+                <TVTable :fields="fields" :items="props.companies.data" @row-clicked="rowClicked" />
             </div>
         </div>
 
@@ -36,7 +36,7 @@
 import AppLayout from "@/Layouts/AppLayout.vue";
 import ShowCompanyModal from "@/Pages/Companies/Partials/ShowCompanyModal.vue";
 import Select from "@/Components/Select.vue";
-import { defineProps, ref } from "vue";
+import {defineProps, ref, toRaw} from "vue";
 import { TVTable } from "@bitthecat/tailwind-vue-data-table";
 import "@bitthecat/tailwind-vue-data-table/dist/library.css";
 
@@ -62,7 +62,7 @@ const props = defineProps({
 });
 
 /* Chargement des données dans le tableau */
-const companies = props.companies.data;
+// const companies = ref(props.companies.data);
 
 const fields = [
     {
@@ -112,25 +112,23 @@ const closeCompanyModal = () => {
 };
 
 /* Gestion du sélécteur de secteur d'activité */
+const allCompanies = props.companies.data;
+
 const selectTitle = "Séléctionnez un secteur d'activité";
 const selectActionMessage = "Tous les secteurs d'activité";
-const selectData = [
-    {
-        value: 1,
-        name: "Agriculture",
-    },
-    {
-        value: 2,
-        name: "Industrie",
-    },
-    {
-        value: 3,
-        name: "Services",
-    },
-];
+
+async function getCompaniesByIndustry(industry) {
+    return await axios.get(route('companies.industries.search', industry));
+}
 
 const showOnlyIndustry = (value) => {
-    console.log(value);
+    if (value) {
+        getCompaniesByIndustry(value).then(response => {
+            props.companies.data = response.data.data;
+        });
+    } else {
+        props.companies.data = allCompanies;
+    }
 };
 
 </script>
