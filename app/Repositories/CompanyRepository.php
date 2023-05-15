@@ -48,6 +48,14 @@ class CompanyRepository implements CompanyRepositoryInterface
     }
 
     /**
+     * @return array
+     */
+    public function getIndustries(): array
+    {
+        return Company::select('industry')->distinct()->get()->pluck('industry')->toArray();
+    }
+
+    /**
      * @return void
      */
     public function truncate(): void

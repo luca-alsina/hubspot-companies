@@ -16,6 +16,8 @@ interface CompanyRepositoryInterface
 
     public function create(array $data) : Company;
 
+    public function getIndustries() : array;
+
     public function truncate() : void;
 
 }
