@@ -4,13 +4,13 @@ namespace App\Repositories;
 
 use App\Models\Company;
 use App\Repositories\Interfaces\CompanyRepositoryInterface;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 
 class CompanyRepository implements CompanyRepositoryInterface
 {
 
     /**
-     * @return array Company
+     * @return Collection Company
      */
     public function getAll(): Collection
     {
