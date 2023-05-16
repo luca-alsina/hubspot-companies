@@ -64,14 +64,14 @@ const close = () => {
             <div class="row-auto flex justify-between">
                 <div class="flex-col">
                     <div class="mt-4 text-sm text-gray-600">
-                        <h3><a class="underline" href="{{ company.website }}">{{ company.website }}</a></h3>
-                        <h3><a href="tel:{{ company.phone }}">{{ company.phone }}</a></h3>
+                        <h3><a class="underline" :href="company.website">{{ company.website }}</a></h3>
+                        <h3><a :href="'tel:' + company.phone">{{ company.phone }}</a></h3>
                     </div>
 
                     <div class="flex flex-row justify-between mt-4">
-                        <a href="mailto:{{ company.email }}" v-if="company.email" class="rounded-full bg-blue-500 hover:bg-blue-600 text-white w-8 h-8 flex items-center justify-center">
+                        <a :href="'mailto:' + company.email" v-if="company.email" class="rounded-full bg-blue-500 hover:bg-blue-600 text-white w-8 h-8 flex items-center justify-center">
                             <svg class="p-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 7.00005L10.2 11.65C11.2667 12.45 12.7333 12.45 13.8 11.65L20 7" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <rect x="3" y="5" width="18" height="14" rx="2" stroke="#000000" stroke-width="2" stroke-linecap="round"></rect> </g></svg>                </a>
-                        <a href="tel:{{ company.phone }}" v-if="company.phone" class="rounded-full bg-green-500 hover:bg-green-600 text-white w-8 h-8 flex items-center justify-center">
+                        <a :href="'tel:' + company.phone" v-if="company.phone" class="rounded-full bg-green-500 hover:bg-green-600 text-white w-8 h-8 flex items-center justify-center">
                             <svg class="p-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="Communication / Phone"> <path id="Vector" d="M9.50246 4.25722C9.19873 3.4979 8.46332 3 7.64551 3H4.89474C3.8483 3 3 3.8481 3 4.89453C3 13.7892 10.2108 21 19.1055 21C20.1519 21 21 20.1516 21 19.1052L21.0005 16.354C21.0005 15.5361 20.5027 14.8009 19.7434 14.4971L17.1069 13.4429C16.4249 13.1701 15.6483 13.2929 15.0839 13.7632L14.4035 14.3307C13.6089 14.9929 12.4396 14.9402 11.7082 14.2088L9.79222 12.2911C9.06079 11.5596 9.00673 10.3913 9.66895 9.59668L10.2363 8.9163C10.7066 8.35195 10.8305 7.57516 10.5577 6.89309L9.50246 4.25722Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g> </g></svg>
                         </a>
                     </div>
@@ -101,8 +101,8 @@ const close = () => {
 
                 <div v-for="contact in company.contacts" class="p-2 border border-gray-500 mt-1">
                     <h3>{{ contact.first_name }} {{ contact.last_name }}</h3>
-                    <h3 v-if="contact.email"><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></h3>
-                    <h3 v-if="contact.phone"><a href="tel:{{ contact.phone }}">{{ contact.phone }}</a></h3>
+                    <h3 v-if="contact.email"><a :href="'mailto:' + contact.email">{{ contact.email }}</a></h3>
+                    <h3 v-if="contact.phone"><a :href="'tel:' + contact.phone">{{ contact.phone }}</a></h3>
                 </div>
             </div>
 
