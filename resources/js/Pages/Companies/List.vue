@@ -66,35 +66,21 @@ const props = defineProps({
 
 const fields = [
     {
-        key: "id",
-        label: "ID",
-        sortable: true,
-    },
-    {
         key: "name",
-        label: "Name",
-        sortable: true,
+        label: "Nom de l'enreprise",
     },
     {
-        key: "email",
-        label: "Email",
-        sortable: true,
-    },
-    {
-        key: "website",
-        label: "Website",
-        sortable: false,
-    },
-    {
-        key: "phone",
-        label: "Phone",
-        sortable: false,
+        key: "industry",
+        label: "Secteur d'activité",
     },
     {
         key: "city",
-        label: "City",
-        sortable: true,
+        label: "Ville",
     },
+    {
+        key: "country",
+        label: "Pays",
+    }
 ];
 
 /* Gestion du modal */
