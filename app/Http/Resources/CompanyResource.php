@@ -14,10 +14,10 @@ class CompanyResource extends JsonResource
         return [
             'id'                => $this->id,
             'name'              => $this->name,
-            'industry'          => $this->industry,
-            'city'              => $this->city,
+            'industry'          => $this->industry ? $this->industry : 'Secteur d\'activité non renseigné',
+            'city'              => $this->city ? $this->city : 'Ville non renseignée',
             'zip'               => $this->zip,
-            'country'           => $this->country,
+            'country'           => $this->country ? $this->country : 'Pays non renseigné',
             'website'           => $this->website,
             'phone'             => $this->phone,
             'email'             => $this->email,
